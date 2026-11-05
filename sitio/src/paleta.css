@@ -1,0 +1,28 @@
+/* The page's palette, from Pantone: grey is the structure, green is the
+   signal, the green of a radio's dial. Green is never small ink at its own
+   shade (it doesn't reach 4.5:1 as text on white): it lives as glyphs, marks
+   and the light behind a character, and as text only in its deep shade.
+
+   Bright White   PANTONE 11-0601 TCX     #f4f5f0   the ground
+   Grafito        PANTONE Cool Gray 11 C  #53565a   buttons, selection, dark grounds
+   Gris claro     PANTONE Cool Gray 1 C   #d9d9d6   the light grounds of the scenes
+   Verde          PANTONE 3278 C          #009b77   the signal: ASCII glyphs, the
+                                                    period of the wordmark, ticks,
+                                                    what the reader has to look at */
+
+:root {
+  --blanco: #f4f5f0;
+  --grafito: #53565a;
+  --gris-claro: #d9d9d6;
+  --verde: #009b77; /* 3.2:1 on blanco: marks only; 4.6:1 on terminal */
+
+  /* Derived, same families, each pair measured for contrast */
+  --tinta: #232426; /* 14:1 on blanco; 4.4:1 on verde (only the wordmark's period, large glyphs) */
+  --gris: #5f6266; /* secondary text, 5.6:1 on blanco, 4.9:1 on blanco-hondo */
+  --gris-paso: #72767a; /* a step not reached yet, on a white card: 4.6:1 */
+  --blanco-hondo: #e6e7e3;
+  --verde-velo: #d3efe6; /* behind text: tinta on it 12.8:1 */
+  --verde-hondo: #007357; /* text and strokes: 5.3:1 on blanco, 4.7:1 on blanco-hondo, 5.9:1 on white */
+  --terminal: #1f2022; /* verde on it 4.6:1 */
+  --sombra: 30, 31, 33;
+}

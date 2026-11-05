@@ -1,0 +1,11 @@
+{
+  "name": "walkie-talkie",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tu harness habla con el de tu socio o tu equipo.",
+  "bin": { "walkie": "bin/walkie.mjs" },
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node --test tests/*.test.mjs" },
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+node_modules/
+.walkie/
+sitio/dist/
+sitio/node_modules/
+*.log
+
+.cache/
+/walkie-talkie-sitio
+shots/

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Walkie Talkie</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- The Stageshow kit is served as its own, from /kit/: its CSS lives in
+         @layer stageshow, so this site's rules (unlayered) always win.
+         Importing it from JS would merge it with the site's own CSS. Only what
+         the site draws is linked, in stageshow.css's order. A scene that
+         starts using a new kit part needs its stylesheet linked here too. -->
+    <link rel="stylesheet" href="/kit/stage.css" />
+    <link rel="stylesheet" href="/kit/keys.css" />
+    <link rel="stylesheet" href="/kit/cursor.css" />
+    <link rel="stylesheet" href="/kit/window.css" />
+    <link rel="stylesheet" href="/kit/motion/Count.css" />
+    <link rel="stylesheet" href="/kit/motion/Collapse.css" />
+    <link rel="stylesheet" href="/kit/parts/Check.css" />
+    <meta name="description" content="Walkie Talkie connects your harness with your partner's or your team's: they assign, report and verify work over a private git channel." />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+/* Every scene: the terminal from terminal.tsx. Frame from marco.css; here only its content
+   and the card. */
+
+
+/* The window runs 80px past the bottom like every frame on the page; the
+   feed sits on the stage's visible bottom (the padding carries those 80px),
+   so every new line pushes the history up and the pane is never empty. Lines
+   leaving at the top fade before the edge reaches them. */
+.ter .ter-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  overflow: hidden;
+  padding: 18px 20px 98px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 56px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 56px);
+  font-family: var(--ss-mono);
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.ter .ter-corrida {
+  transition: opacity var(--dur-media) ease;
+}
+
+.ter .ter-corrida[data-dip] {
+  opacity: 0;
+  transition-duration: var(--dur-corta);
+}
+
+/* The caret keeps its box after the command is sent: hidden, not gone, so the
+   line it sits on does not hop when the run starts */
+.ter .ss-term__cmd[data-run] .ss-term__caret {
+  opacity: 0;
+}
+
+.ter .ter-line {
+  display: grid;
+  grid-template-columns: 2.5ch 12ch auto;
+}
+
+.ter .ter-line[data-k='out'] .ter-a,
+.ter .ter-line[data-k='luz'] .ter-a {
+  grid-column: 2 / -1;
+  color: #ececee;
+  white-space: pre;
+}
+
+/* What the reader has to look at: an alert in bright white behind the
+   signal's mark; a verdict that passed, in the signal itself */
+.ter .ter-line[data-k='luz'] .ter-a {
+  color: #fff;
+  font-weight: 600;
+}
+
+.ter .ter-line[data-k='luz'][data-bien] .ter-a {
+  color: var(--verde);
+}
+
+.ter .ter-line[data-k='luz'] .ter-b {
+  display: none;
+}
+
+.ter .ter-a,
+.ter .ter-b:not(.dim) {
+  color: #ececee;
+}
+
+/* ---- The card ---- */
+
+.ter .ter-card {
+  top: 262px;
+  left: 364px;
+  width: 146px;
+  padding: 14px 16px 16px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  will-change: transform;
+  transition: opacity var(--dur-media) ease, transform var(--dur-lenta) cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ter .ter-card[data-show] {
+  opacity: 1;
+  transform: none;
+}
+
+.ter .ter-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ter .ter-card__app {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.ter .ter-card__tag {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--blanco-hondo);
+  color: var(--verde-hondo);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.ter .ter-card__valor {
+  display: block;
+  margin-top: 8px;
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+}
+
+.ter .ter-card__foot {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #6e6e73;
+}
+
+/* ---- Compact ---- */
+
+.ter .ss-stage[data-layout='compact'] .ter-body {
+  padding: 12px 16px 92px;
+  font-size: 11.5px;
+  line-height: 19px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-line {
+  grid-template-columns: 2.5ch 13.5ch auto;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card {
+  top: auto;
+  bottom: 28px;
+  left: auto;
+  right: 20px;
+  width: 124px;
+  padding: 12px 12px 13px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card__head {
+  gap: 6px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card__app {
+  font-size: 12px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card__valor {
+  margin-top: 6px;
+  font-size: 32px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card__foot {
+  margin-top: 6px;
+  font-size: 11.5px;
+}
+
+/* ---- A card that lists steps instead of a value (the thread) ---- */
+
+.ter .ter-pasos {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.ter .ter-paso {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gris-paso);
+  font-size: 13px;
+  line-height: 18px;
+  transition: color var(--dur-media) ease;
+}
+
+.ter .ter-paso[data-on] {
+  color: var(--tinta);
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-pasos {
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-paso {
+  font-size: 12px;
+}
+
+.ter .ter-card__lista {
+  display: block;
+  font-family: var(--ss-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0;
+  white-space: pre;
+}
+
+/* A verdict is a word, not a number: it keeps the card's width */
+.ter .ter-card__palabra {
+  display: block;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card__palabra {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.ter .ter-card[data-arriba] {
+  top: 84px;
+}
+
+.ter .ss-stage[data-layout='compact'] .ter-card[data-arriba] {
+  top: 64px;
+  bottom: auto;
+}
+
+/* Done is the signal's color here, not the kit's green */
+.ter .ss-stage {
+  --ss-success: var(--verde);
+}
+
+/* On a phone the card would sit on the lines it sums up: the terminal tells
+   the story alone and the caption carries the point */
+.ter .ss-stage[data-layout='compact'] .ter-card {
+  display: none;
+}

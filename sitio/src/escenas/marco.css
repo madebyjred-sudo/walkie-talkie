@@ -1,0 +1,72 @@
+/* One frame for every demo on the page, cut the way benji.org/stageshow cuts
+   its finder-glass: the stage is the text column (550 × 440, radius 12), the
+   window sits one gutter in from the top and left (40) and runs off the right
+   and bottom. Compact (400 × 340) keeps finder-glass's own numbers: window
+   20/20/460/400. The ground is ASCII instead of a gradient (fondos/, drawn by
+   herramientas/fondos-ascii.mjs): green glyphs whose density carries
+   finder-glass's light, bright at the top left. Shadows stay neutral. */
+
+.marco .ss-stage {
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--gris-claro) url('./fondos/claro.svg') 0 0 / 550px 440px no-repeat;
+}
+
+/* The demos alternate light and grafito down the page: no two neighbours on
+   the same ground */
+.marco.oscuro .ss-stage {
+  background: var(--grafito) url('./fondos/grafito.svg') 0 0 / 550px 440px no-repeat;
+}
+
+.marco .marco-win {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  width: 640px;
+  height: 480px;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.16),
+    0 24px 60px -10px rgba(var(--sombra), 0.38),
+    0 8px 20px -10px rgba(var(--sombra), 0.24);
+}
+
+.marco .ss-stage[data-layout='compact'] .marco-win {
+  left: 20px;
+  top: 20px;
+  width: 460px;
+  height: 400px;
+}
+
+/* A satellite on the window: the kit's satellite shadow, tinted the same */
+.marco .marco-sat {
+  position: absolute;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    0 18px 40px -12px rgba(var(--sombra), 0.45),
+    0 6px 14px -8px rgba(var(--sombra), 0.3);
+}
+
+/* The terminal in the palette: a neutral black body, grey path, the ticks
+   and the prompt mark in the green signal */
+.ter .ss-stage {
+  --ss-term-dim: #8b8e92;
+  --ss-term-path: #a3a6aa;
+  --ss-term-ok: var(--verde);
+  --ss-term-sigil: var(--verde);
+}
+
+.ter .ss-window[data-chrome='terminal'] {
+  --ss-term-bg: var(--terminal);
+}
+
+/* Walkie Talkie's own pieces speak Figtree */
+.ter .ter-card {
+  font-family: 'Figtree Variable', system-ui, sans-serif;
+}
+
+/* The terminal's title a step brighter than the kit's, to reach 4.5:1 */
+.ter .ss-term__title {
+  color: rgba(255, 255, 255, 0.58);
+}
